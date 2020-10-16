@@ -19,13 +19,13 @@ class BaseContact:
 
     def contact(self):
         print(
-            f"Dialing {self.phone}" 
+            f"Dialing {self.phone}"
             f" and calling {self.name} {self.surname}"
         )
 
 
     def __str__(self):
-        return f'{self.name}, {self.surname}, {self.eMail_address}' 
+        return f'{self.name}, {self.surname}, {self.eMail_address}'
 
 
 class BusinessContact(BaseContact):
@@ -43,7 +43,7 @@ class BusinessContact(BaseContact):
 
     def contact(self):
         print(
-            f"Dialing {self.work_phone}" 
+            f"Dialing {self.work_phone}"
             f" and calling {self.name} {self.surname}"
         )
 
@@ -53,7 +53,6 @@ class BusinessContact(BaseContact):
 
 
 def create_contacts(business_card, number):
- 
     if business_card == 'BaseContact':
         for contact in range(number):
             contact = BaseContact(
@@ -78,8 +77,7 @@ def create_contacts(business_card, number):
     else:
         raise ValueError(
             f"Business Card name: {business_card} "
-            f"is neither 'BaseContact' nor 'BusinessContact'"
-            )
+            f"is neither 'BaseContact' nor 'BusinessContact'")
     return address_book
 
 
