@@ -1,7 +1,6 @@
 from faker import Faker
 
 faker = Faker()
-address_book = []
 
 
 class BaseContact:
@@ -53,6 +52,7 @@ class BusinessContact(BaseContact):
 
 
 def create_contacts(business_card, number):
+    address_book = []
     if business_card == 'BaseContact':
         for contact in range(number):
             contact = BaseContact(
