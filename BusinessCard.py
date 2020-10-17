@@ -10,18 +10,15 @@ class BaseContact:
         self.phone = phone
         self.eMail_address = eMail_address
 
-
     @property
     def label_length(self):
         return len(self.name + ' ' + self.surname)
-
 
     def contact(self):
         print(
             f"Dialing {self.phone}"
             f" and calling {self.name} {self.surname}"
         )
-
 
     def __str__(self):
         return f'{self.name}, {self.surname}, {self.eMail_address}'
@@ -34,18 +31,15 @@ class BusinessContact(BaseContact):
         self.position = position
         self.work_phone = work_phone
 
-
     @property
     def label_length(self):
         return len(self.name + ' ' + self.surname)
-
 
     def contact(self):
         print(
             f"Dialing {self.work_phone}"
             f" and calling {self.name} {self.surname}"
         )
-
 
     def __str__(self):
         return f'{self.name}, {self.surname}, {self.work_phone}'
@@ -73,38 +67,14 @@ def create_contacts(business_card, number):
                 position = faker.job(),
                 work_phone = faker.phone_number()
             )
-            address_book.append(contact)
+            address_book.append(str(contact))
     else:
         raise ValueError(
             f"Business Card name: {business_card} "
             f"is neither 'BaseContact' nor 'BusinessContact'")
     return address_book
-
+    
 
 personal_data = create_contacts('BusinessContact', 10)
 
-
-def base_address(personal_data):
-    for person in personal_data:
-        print(
-            person.name,
-            person.surname,
-            person.phone,
-            person.eMail_address,
-            sep='| '
-        )
-
-
-def business_address(personal_data):
-    for person in personal_data:
-        print(
-            person.name,
-            person.surname,
-            person.company,
-            person.position,
-            person.work_phone,
-            sep='| '
-        )
-
-
-business_address(personal_data)
+print(personal_data)
