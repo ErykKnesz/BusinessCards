@@ -85,7 +85,6 @@ def address_book(persons):
         print(person)
 
 
-
 address_book(personal_data)
 
 personal_data[0].contact()
