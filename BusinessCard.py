@@ -4,24 +4,32 @@ faker = Faker()
 
 
 class BaseContact:
-    def __init__(self, name, surname, phone, eMail_address):
+    def __init__(self, name, surname, phone, email_address):
         self.name = name
         self.surname = surname
         self.phone = phone
-        self.eMail_address = eMail_address
+        self.email_address = email_address
 
     @property
     def label_length(self):
         return len(self.name + ' ' + self.surname)
+    
+    @property
+    def contact_phone(self):   
+        if isinstance(self, BusinessContact):
+            contact_phone = self.work_phone
+        else:
+            contact_phone = self.phone
+        return contact_phone
 
     def contact(self):
         print(
-            f"Dialing {self.phone}"
+            f"Dialing {self.contact_phone}"
             f" and calling {self.name} {self.surname}"
         )
 
     def __str__(self):
-        return f'{self.name}, {self.surname}, {self.eMail_address}'
+        return f'{self.name}, {self.surname}, {self.email_address}'
 
 
 class BusinessContact(BaseContact):
@@ -35,12 +43,6 @@ class BusinessContact(BaseContact):
     def label_length(self):
         return len(self.name + ' ' + self.surname)
 
-    def contact(self):
-        print(
-            f"Dialing {self.work_phone}"
-            f" and calling {self.name} {self.surname}"
-        )
-
     def __str__(self):
         return f'{self.name}, {self.surname}, {self.work_phone}'
 
@@ -53,7 +55,7 @@ def create_contacts(business_card, number):
                 name = faker.first_name(),
                 surname = faker.last_name(),
                 phone = faker.phone_number(),
-                eMail_address = faker.email()
+                email_address = faker.email()
             )
             address_book.append(contact)
     elif business_card == 'BusinessContact':
@@ -62,7 +64,7 @@ def create_contacts(business_card, number):
                 name = faker.first_name(),
                 surname = faker.last_name(),
                 phone = faker.phone_number(),
-                eMail_address = faker.email(),
+                email_address = faker.email(),
                 company = faker.company(),
                 position = faker.job(),
                 work_phone = faker.phone_number()
@@ -83,4 +85,7 @@ def address_book(persons):
         print(person)
 
 
+
 address_book(personal_data)
+
+personal_data[0].contact()
