@@ -67,14 +67,20 @@ def create_contacts(business_card, number):
                 position = faker.job(),
                 work_phone = faker.phone_number()
             )
-            address_book.append(str(contact))
+            address_book.append(contact)
     else:
         raise ValueError(
             f"Business Card name: {business_card} "
             f"is neither 'BaseContact' nor 'BusinessContact'")
     return address_book
-    
+
 
 personal_data = create_contacts('BusinessContact', 10)
 
-print(personal_data)
+
+def address_book(persons):
+    for person in persons:
+        print(person)
+
+
+address_book(personal_data)
