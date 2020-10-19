@@ -16,11 +16,7 @@ class BaseContact:
     
     @property
     def contact_phone(self):   
-        if isinstance(self, BusinessContact):
-            contact_phone = self.work_phone
-        else:
-            contact_phone = self.phone
-        return contact_phone
+        return self.phone
 
     def contact(self):
         print(
@@ -42,6 +38,10 @@ class BusinessContact(BaseContact):
     @property
     def label_length(self):
         return len(self.name + ' ' + self.surname)
+
+    @property
+    def contact_phone(self):   
+        return self.work_phone
 
     def __str__(self):
         return f'{self.name}, {self.surname}, {self.work_phone}'
